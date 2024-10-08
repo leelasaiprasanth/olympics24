@@ -11,14 +11,18 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
+
+from decouple import config
+from unipath import Path
 
 from pathlib import Path
 
-load_dotenv()  # Load environment variables from .env file
+# from dotenv import load_dotenv
+# load_dotenv()  # Load environment variables from .env file
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = Path(__file__).parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +34,7 @@ SECRET_KEY = 'django-insecure-mpqm3_c59r5q-3wc+6cg$wdz#5&h%2s&*(oxp95q153ybbrnk!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # add external urls for the application to be allowed.
 
 
 # Application definition
@@ -57,6 +61,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'olympics24.urls'
+# LOGIN_REDIRECT_URL = "home"  # Route defined in app/urls.py
+# LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
 # TEMPLATE_DIR = os.path.join(BASE_DIR, "core/templates")  # ROOT dir for templates
 
 TEMPLATES = [
@@ -84,7 +90,7 @@ WSGI_APPLICATION = 'olympics24.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
