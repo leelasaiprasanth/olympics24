@@ -100,8 +100,9 @@
 olympics24/
 ├── olympics24/          # Django project settings
 ├── paralympics24/       # Django app for dashboard
-├── static/              # Static assets (CSS, JS, images)
-├── templates/           # HTML templates for rendering views
+├── core/static/         # Static assets (CSS, JS, images)
+├── core/templates/      # HTML templates for rendering views
+├── core/datasets/       # Datasets for the dashboard
 ├── venv/                # Virtual environment folder
 ├── .env                 # Environment variables file
 ├── requirements.txt     # Dependencies file
